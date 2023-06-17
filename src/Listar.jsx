@@ -34,7 +34,7 @@ function Listar() {
                 <h5>Genero: {film.genero}</h5>
                 <p>Duração: {film.duracao} min</p>
                 <button onClick={() => adicionar(film)} className="btn btn-success mb-auto">Adicionar</button>
-                <button className="btn btn-primary mb-auto float-end">Sinopse</button>
+                <button onClick={()=> verSinopse(film)} className="btn btn-primary mb-auto float-end">Sinopse</button>
             </div>
         </div>
     ))
@@ -123,6 +123,12 @@ function Listar() {
         }
     }
 
+    function verSinopse(film){
+        Swal.fire(
+            `${film.titulo}`,
+            `${film.sinopse}`
+          )
+    }
 
     return (
         <div className="container">
@@ -141,7 +147,7 @@ function Listar() {
                     {tabela}
                     <tr>
                         <td>Duração Total</td>
-                        <td>{total} min</td>
+                        <td>{(total - (total % 60)) / 60} h e {total % 60} min</td>
                         <td><button onClick={() => retirarTudo()} type="button" className="btn btn-danger">X</button></td>
                     </tr>
                     
